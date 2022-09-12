@@ -5,20 +5,17 @@
 {% endblock %}
 
 {% block content %}
+    <a href="{% url 'publicacao.publicar' %}">publicar dúvida</a>
     <h2>Discussões no Fórum</h2>
 
     <ul>
+        {% for pub in publicacao %}
         <li>
-            <span>Publicacao 1</span>
-            <a href="{% url 'publicacao.pub' %}">Abrir</a>
+            <span>titulo: {{ pub.titulo }}</span><br>
+            <span>autor: {{ pub.usuario}}</span><br>
+            <span>criacao: {{ pub.data_publicacao }}</span>
+            <a href="{% url 'publicacao.publicacao' %}">Abrir</a><br><br>
         </li>
-        <li>
-            <span>Publicacao 2</span>
-            <a href="{% url 'publicacao.pub' %}">Abrir</a>
-        </li>
-        <li>
-            <span>Publicacao 3</span>
-            <a href="{% url 'publicacao.pub' %}">Abrir</a>
-        </li>
+        {% endfor %}
     </ul>
 {% endblock content %}

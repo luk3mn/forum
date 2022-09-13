@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Publicao</h2>
-
+    <h2>Publicação: {{ publicacao.titulo }}</h2>
+    <h4>Autor: {{ publicacao.usuario }}</h4>
     <div class="pub">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus vitae obcaecati nesciunt non dolore recusandae tempora vero corporis ipsam, pariatur, odio amet commodi velit. Ea eos voluptatibus sunt harum libero.</p>
+        <p>{{ publicacao.duvida }}</p>
     </div>
 {% endblock %}

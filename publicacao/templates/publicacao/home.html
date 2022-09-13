@@ -14,7 +14,7 @@
             <span>titulo: {{ pub.titulo }}</span><br>
             <span>autor: {{ pub.usuario}}</span><br>
             <span>criacao: {{ pub.data_publicacao }}</span>
-            <a href="{% url 'publicacao.publicacao' %}">Abrir</a><br><br>
+            <a href="{% url 'publicacao.publicacao' pub.id %}">Abrir</a><br><br>
         </li>
         {% endfor %}
     </ul>

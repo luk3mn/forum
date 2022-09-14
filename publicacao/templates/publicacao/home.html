@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'publicacao.publicar' %}">publicar dúvida</a>
+    <div class="btn-pub">
+        <a href="{% url 'publicacao.publicar' %}">publicar dúvida</a>
+    </div>
     <h2>Discussões no Fórum</h2>
 
-    <ul>
+    <ul class="duvidas">
         {% for pub in publicacao %}
         <li>
             <span>titulo: {{ pub.titulo }}</span><br>

@@ -1,0 +1,29 @@
+body {
+    background-color: rgb(192, 192, 192);
+}
+
+.menu ul li, a {
+    list-style: none;
+    display: inline-block;
+    text-decoration: none;
+    margin: .2rem;
+}
+
+.btn-pub > a {
+    border: 1px solid rgb(250, 133, 133);
+    background-color: rgb(229, 196, 153);
+    width: 200px;
+    border-radius: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+}
+
+.duvidas li {
+    list-style: none;
+    border: 1px solid red;
+    width: 550px;
+    margin: .5rem 0;
+    padding: .5rem;
+}

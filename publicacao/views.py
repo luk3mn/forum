@@ -10,10 +10,11 @@ def home(request):
 def publicacao(request, id_pub):
     publicacao = Publicacao.objects.get(id=id_pub)
     return render(request, 'publicacao/publicacao.html', {'publicacao':publicacao})
-    # return HttpResponse(publicacao)
 
 def publicar(request):
     usuario = request.user # pega o usuário logado
+    publicacao = Publicacao.objects.filter(usuario=usuario)
+    # id_usuario = request.user.id # pega o 'id' do usuário logado
     # usuario = get_object_or_404(User, id=id_usuario) # 
     if request.method == "POST":
         titulo = request.POST.get('titulo') # pega o campo 'titulo' do form
@@ -22,4 +23,6 @@ def publicar(request):
         add_duvida = Publicacao(usuario=usuario, titulo=titulo, duvida=duvida) # add no DB
         add_duvida.save() # salva no DB
 
-    return render(request, 'publicacao/publicar.html')
+        # return redirect(f'/publicacao/{id_usuario}')
+
+    return render(request, 'publicacao/publicar.html',{'publicacao':publicacao})

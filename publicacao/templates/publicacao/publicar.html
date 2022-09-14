@@ -12,4 +12,9 @@
         <textarea name="duvida" cols="35" rows="10" placeholder="Qual a sua dúvida?"></textarea><br>
         <input type="submit" value="Publicar">
     </form>
+
+    <h2>Minhas Publicações</h2>
+    {% for pub in publicacao %}
+        <li> <a href="{% url 'publicacao.publicacao' pub.id %}">{{ pub }}</a></li>
+    {% endfor %}
 {% endblock %}

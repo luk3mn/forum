@@ -1,0 +1,16 @@
+{% extends 'autenticacao/base.html' %}
+
+{% block title %}Cadastro de Usuairo{% endblock %}
+
+{% block content %}
+    <h1>Cadastro de usuário</h1>
+    <form action="" method="post">{% csrf_token %}
+        <input type="text" name="nome" placeholder="Nome">
+        <input type="text" name="sobrenome" placeholder="Sobrenome">
+        <input type="text" name="usuario" placeholder="Usuário">
+        <input type="password" name="senha" placeholder="Senha">
+        <input type="password" name="confirme-senha" placeholder="Confirmar Senha">
+        <input type="submit" value="Cadastrar">
+        <a href="{% url 'autenticacao.login' %}">Login</a>
+    </form>
+{% endblock %}

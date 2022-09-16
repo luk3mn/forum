@@ -12,9 +12,14 @@
     <header class="menu">
         <ul>
             <li><a href="{% url 'publicacao.home' %}">HOME</a></li>
+            {% if not request.user.is_authenticated %}
             <li><a href="{% url 'autenticacao.login' %}">LOGIN/CADASTRO</a></li>
+            {% endif %}
             <li><a href="">SOBRE</a></li>
-            <li>Nome do usuario logado</li>
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'autenticacao.logout' %}">Sair</a></li>
+            <li>{{ request.user }}</li>
+            {% endif %}
         </ul>
     </header>
     <main>

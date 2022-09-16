@@ -6,7 +6,9 @@
 
 {% block content %}
     <div class="btn-pub">
+        {% if request.user.is_authenticated %}
         <a href="{% url 'publicacao.publicar' %}">publicar dúvida</a>
+        {% endif %}
     </div>
     <h2>Discussões no Fórum</h2>
 

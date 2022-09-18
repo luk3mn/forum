@@ -13,3 +13,13 @@ class Publicacao(models.Model):
 
     def __str__(self) -> str:
         return self.titulo
+
+class Resposta(models.Model):
+    respota = models.CharField(max_length=450)
+    data_resposta = models.DateTimeField(auto_now=True)
+    data_modificacao = models.DateTimeField(auto_now=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    # publicacao = models.ForeignKey(Publicacao, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.respota

@@ -3,6 +3,9 @@
 {% block title %}Login de usuário{% endblock %}
 
 {% block content %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
     <h1>Login de usuário</h1>
     <form action="{% url 'autenticacao.login' %}" method="post">{% csrf_token %}
         <input type="text" name="usuario" placeholder="Usuário">

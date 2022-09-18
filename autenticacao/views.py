@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.contrib.auth.models import User
+from django.contrib.messages import constants
 
 def login(request):
 
@@ -25,7 +26,6 @@ def login(request):
     return render(request, 'autenticacao/signin.html')
 
 def cadastro(request):
-
     if request.method == "POST":
 
         # coleta dos dados
@@ -35,18 +35,28 @@ def cadastro(request):
         senha = request.POST.get('senha')
         confirme_senha = request.POST.get('confirme-senha')
 
+        # testa se as senhas cadastradas coincidem
         if not senha == confirme_senha:
-            # return redirect('/autenticacao/cadastro')
-            return HttpResponse('Senhas não coincidem!')
-        
-        if not (nome and sobrenome and usuario and senha and confirme_senha):
+            messages.add_message(request, constants.ERROR, 'Senhas não coincidem!')
             return redirect('/autenticacao/cadastro')
         
+        # testa campos em brancos
+        if not (nome and sobrenome and usuario and senha and confirme_senha):
+            messages.add_message(request, constants.ERROR, 'Preencha todos os campos obrigatórios')
+            return redirect('/autenticacao/cadastro')
+        
+        # teste se o nome de usuario ja existe no banco de dados
         if User.objects.filter(username=usuario):
-            return HttpResponse("Usuario já existe")
-            
-
-        return HttpResponse([nome, sobrenome, usuario, senha])
+            messages.add_message(request, constants.ERROR, 'Usuario já existe')
+            return redirect('/autenticacao/login/')
+        try:
+            user = User.objects.create_user(first_name=nome, last_name=sobrenome, username=usuario, password=senha) # instancia o novo usuario
+            user.save() # persistir no db
+            messages.add_message(request, constants.SUCCESS, 'Usuário cadastrado com sucesso')
+            return redirect('/autenticacao/login/')
+        except:
+            messages.add_message(request, constants.ERROR, 'Erro interno do sistema!')
+            return redirect('/autenticaco/cadastro/')
     elif request.method == "GET":
         if request.user.is_authenticated:
             return redirect('/')

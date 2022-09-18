@@ -10,4 +10,25 @@
     <div class="pub">
         <p>{{ publicacao.duvida }}</p>
     </div>
+    <div class="area-repostas">
+        <h3>Respostas</h3>
+        <div class="pub-resposta">
+            <form action="" method="post">
+                <textarea name="resposta" cols="60" rows="10"></textarea><br>
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+        <div class="respostas">
+            <ul>
+                <li>
+                    <span>Usuario: </span><br>
+                    <span>Resposta: </span>
+                </li>
+                <li>
+                    <span>Usuario: </span><br>
+                    <span>Resposta: </span>
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}
